@@ -1,0 +1,36 @@
+llm-pull-request-reviewer/
+│── src/                        
+│   ├── main.py                
+│   ├── config.py              
+│   ├── github_api.py          
+│   ├── llm_review.py           
+│   ├── static_analysis.py       
+│   ├── generate_comments.py   
+│   ├── webhook_handler.py    
+│
+│── data/                       
+│   ├── sample_pr_1.json
+│   ├── sample_pr_2.json
+│
+│── tests/                     
+│   ├── test_github_api.py
+│   ├── test_llm_review.py
+│   ├── test_static_analysis.py
+│
+│── scripts/                    
+│   ├── setup_webhook.py       
+│   ├── process_prs.py          
+│
+│── docs/                      
+│   ├── setup.md               
+│   ├── api_docs.md             
+│
+│── .github/                     
+│   ├── workflows/
+│       ├── run_review.yml     
+│
+│── .env.example                 
+│── Dockerfile                  
+│── README.md                   
+│── requirements.txt           
+│── LICENSE                     
