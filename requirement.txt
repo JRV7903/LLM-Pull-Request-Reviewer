@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+openai
+pylint
+flake8
+requests
+PyGithub
+python-dotenv
