@@ -6,3 +6,5 @@ flake8
 requests
 PyGithub
 python-dotenv
+flask
+pandas
