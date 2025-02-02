@@ -9,15 +9,15 @@ headers = {
     "Accept": "application/vnd.github.v3+json"
 }
 
-# payload = {
-#     "name": "web",
-#     "active": True,
-#     "events": ["pull_request"],
-#     "config": {
-#         "url": webhook_url,
-#         "content_type": "json"
-#     }
-# }
+payload = {
+    "name": "web",
+    "active": True,
+    "events": ["pull_request"],
+    "config": {
+        "url": webhook_url,
+        "content_type": "json"
+    }
+}
 
 response = requests.post(f"{GITHUB_API_URL}/repos/{repo}/hooks", json=payload, headers=headers)
 print(response.json())
