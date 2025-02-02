@@ -4,23 +4,23 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-# jobs:
-#   review:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#       - name: Setup Python
-#         uses: actions/setup-python@v3
-#         with:
-#           python-version: "3.9"
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
 
-#       - name: Install dependencies
-#         run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-#       - name: Run Static Analysis
-#         run: pylint src/
+      - name: Run Static Analysis
+        run: pylint src/
 
-#       - name: Run Tests
-#         run: pytest tests/
+      - name: Run Tests
+        run: pytest tests/
