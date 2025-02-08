@@ -12,12 +12,10 @@ def process_sample_pr(file_path):
     repo = pr_data["repository"]["full_name"]
     pr_number = pr_data["pull_request"]["number"]
 
-    # Fetch code changes
     code_diff = get_pr_changes(repo, pr_number)
 
-    # LLM and Static Analysis
     llm_review = review_code_with_llm(str(code_diff))
-    static_analysis = analyze_code_style("temp_file.py")  # Assuming file is saved
+    static_analysis = analyze_code_style("temp_file.py")
 
     comment = format_review_comment(llm_review, static_analysis)
     comment_on_pr(repo, pr_number, comment)
