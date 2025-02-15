@@ -1,21 +1,18 @@
 import requests
-from src.config import GITHUB_ACCESS_TOKEN, GITHUB_API_URL
+import openai
 
-headers = {
-    "Authorization": f"token {GITHUB_ACCESS_TOKEN}",
-    "Accept": "application/vnd.github.v3+json"
-}
-
-def get_pr_changes(repo, pr_number):
-    """Fetches the changed files in a pull request."""
-    url = f"{GITHUB_API_URL}/repos/{repo}/pulls/{pr_number}/files"
+def get_pull_request_diff(repo, pull_request_number, token):
+    headers = {"Authorization": f"token {token}"}
+    url = f"https://api.github.com/repos/{repo}/pulls/{pull_request_number}.diff"
     response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        return response.json()
-    return None
+    response.raise_for_status()
+    return response.text
 
-def comment_on_pr(repo, pr_number, comment):
-    """Posts a comment on the pull request."""
-    url = f"{GITHUB_API_URL}/repos/{repo}/issues/{pr_number}/comments"
-    payload = {"body": comment}
-    requests.post(url, headers=headers, json=payload)
+def generate_review(diff, api_key):
+    openai.api_key = api_key
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=f"Review the following code diff:\n{diff}",
+        max_tokens=200,
+    )
+    return response.choices[0].text.strip()
