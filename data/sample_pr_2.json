@@ -11,3 +11,32 @@
         "diff_url": "https://github.com/yourusername/yourrepo/pull/2.diff"
     }
 }
+{
+    "repository": {
+        "full_name": "yourusername/yourrepo"
+    },
+    "pull_request": {
+        "number": 2,
+        "user": {
+            "login": "testuser"
+        },
+        "body": "Refactored the existing code for better readability",
+        "diff_url": "https://github.com/yourusername/yourrepo/pull/2.diff",
+        "files_changed": [
+            {
+                "filename": "src/main.py",
+                "status": "modified",
+                "additions": 5,
+                "deletions": 3,
+                "changes": 8
+            },
+            {
+                "filename": "src/utils.py",
+                "status": "added",
+                "additions": 20,
+                "deletions": 0,
+                "changes": 20
+            }
+        ]
+    }
+}
