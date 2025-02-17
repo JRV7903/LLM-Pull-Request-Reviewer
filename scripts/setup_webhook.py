@@ -1,23 +1,30 @@
 import requests
-from src.config import GITHUB_ACCESS_TOKEN, GITHUB_API_URL
+from src.config import GITHUB_ACCESS_TOKEN, GITHUB_API_URL, WEBHOOK_URL
 
-repo = "yourusername/yourrepo"
-webhook_url = "https://your-deployed-url.com/webhook"
-
-headers = {
-    "Authorization": f"token {GITHUB_ACCESS_TOKEN}",
-    "Accept": "application/vnd.github.v3+json"
-}
-
-payload = {
-    "name": "web",
-    "active": True,
-    "events": ["pull_request"],
-    "config": {
-        "url": webhook_url,
-        "content_type": "json"
+def setup_webhook(repo):
+    headers = {
+        "Authorization": f"token {GITHUB_ACCESS_TOKEN}",
+        "Accept": "application/vnd.github.v3+json"
     }
-}
 
-response = requests.post(f"{GITHUB_API_URL}/repos/{repo}/hooks", json=payload, headers=headers)
-print(response.json())
+    payload = {
+        "name": "web",
+        "active": True,
+        "events": ["pull_request"],
+        "config": {
+            "url": WEBHOOK_URL,
+            "content_type": "json",
+            "secret": WEBHOOK_SECRET
+        }
+    }
+
+    response = requests.post(f"{GITHUB_API_URL}/repos/{repo}/hooks", json=payload, headers=headers)
+    if response.status_code == 201:
+        print(f"Webhook successfully set up for {repo}")
+    else:
+        print(f"Failed to set up webhook for {repo}. Status code: {response.status_code}")
+        print(response.json())
+
+if __name__ == "__main__":
+    repo = "yourusername/yourrepo"
+    setup_webhook(repo)
