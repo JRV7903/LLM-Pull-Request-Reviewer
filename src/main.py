@@ -9,7 +9,6 @@ app = FastAPI()
 
 @app.post("/webhook")
 async def github_webhook(request: Request):
-    # Verify webhook signature
     signature = request.headers.get("X-Hub-Signature-256")
     if not signature:
         raise HTTPException(status_code=400, detail="No signature provided")
