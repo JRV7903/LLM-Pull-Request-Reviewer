@@ -20,7 +20,6 @@ async def github_webhook(request: Request):
     if not hmac.compare_digest(signature, expected_signature):
         raise HTTPException(status_code=401, detail="Invalid signature")
     
-    # Process the webhook
     event_type = request.headers.get("X-GitHub-Event")
     payload = await request.json()
     
