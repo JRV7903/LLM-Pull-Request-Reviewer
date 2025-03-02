@@ -8,3 +8,5 @@ PyGithub
 python-dotenv
 flask
 pandas
+markdown
+pytest
