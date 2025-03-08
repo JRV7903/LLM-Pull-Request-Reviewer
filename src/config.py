@@ -1,23 +1,19 @@
-# src/config.py
-import os
-from pydantic import BaseSettings, Field
+# import os
+# from pydantic import BaseSettings, Field
 
-class Settings(BaseSettings):
-    # GitHub configuration
-    GITHUB_TOKEN: str = Field(..., env="GITHUB_TOKEN")
-    GITHUB_WEBHOOK_SECRET: str = Field(None, env="GITHUB_WEBHOOK_SECRET")
+# class Settings(BaseSettings):
+#     GITHUB_TOKEN: str = Field(..., env="GITHUB_TOKEN")
+#     GITHUB_WEBHOOK_SECRET: str = Field(None, env="GITHUB_WEBHOOK_SECRET")
     
-    # OpenAI configuration
-    OPENAI_API_KEY: str = Field(..., env="OPENAI_API_KEY")
-    OPENAI_MODEL: str = Field("gpt-4", env="OPENAI_MODEL")
+#     OPENAI_API_KEY: str = Field(..., env="OPENAI_API_KEY")
+#     OPENAI_MODEL: str = Field("gpt-4", env="OPENAI_MODEL")
     
-    # Application settings
-    LOG_LEVEL: str = Field("INFO", env="LOG_LEVEL")
-    MAX_TOKENS_PER_REQUEST: int = Field(4096, env="MAX_TOKENS_PER_REQUEST")
-    REVIEW_COMMENT_PREFIX: str = Field("🤖 AI Review: ", env="REVIEW_COMMENT_PREFIX")
+#     LOG_LEVEL: str = Field("INFO", env="LOG_LEVEL")
+#     MAX_TOKENS_PER_REQUEST: int = Field(4096, env="MAX_TOKENS_PER_REQUEST")
+#     REVIEW_COMMENT_PREFIX: str = Field("AI Review: ", env="REVIEW_COMMENT_PREFIX")
     
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
+#     class Config:
+#         env_file = ".env"
+#         env_file_encoding = "utf-8"
 
-settings = Settings()
+# settings = Settings()
