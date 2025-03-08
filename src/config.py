@@ -1,16 +1,23 @@
+# src/config.py
 import os
-from dotenv import load_dotenv
+from pydantic import BaseSettings, Field
 
-load_dotenv()
+class Settings(BaseSettings):
+    # GitHub configuration
+    GITHUB_TOKEN: str = Field(..., env="GITHUB_TOKEN")
+    GITHUB_WEBHOOK_SECRET: str = Field(None, env="GITHUB_WEBHOOK_SECRET")
+    
+    # OpenAI configuration
+    OPENAI_API_KEY: str = Field(..., env="OPENAI_API_KEY")
+    OPENAI_MODEL: str = Field("gpt-4", env="OPENAI_MODEL")
+    
+    # Application settings
+    LOG_LEVEL: str = Field("INFO", env="LOG_LEVEL")
+    MAX_TOKENS_PER_REQUEST: int = Field(4096, env="MAX_TOKENS_PER_REQUEST")
+    REVIEW_COMMENT_PREFIX: str = Field("🤖 AI Review: ", env="REVIEW_COMMENT_PREFIX")
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
 
-GITHUB_ACCESS_TOKEN = os.getenv("GITHUB_ACCESS_TOKEN")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET")
-GITHUB_API_URL = "https://api.github.com"
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")
-
-# Validate required environment variables
-required_vars = ["GITHUB_ACCESS_TOKEN", "OPENAI_API_KEY", "WEBHOOK_SECRET", "WEBHOOK_URL"]
-for var in required_vars:
-    if not globals()[var]:
-        raise ValueError(f"Missing required environment variable: {var}")
+settings = Settings()
