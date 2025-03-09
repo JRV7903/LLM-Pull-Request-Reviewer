@@ -1,4 +1,3 @@
-# src/github_client.py
 import logging
 import requests
 from typing import Dict, List, Optional
