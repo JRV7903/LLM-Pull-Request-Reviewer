@@ -21,14 +21,14 @@ def setup_webhook(repo):
     response = requests.post(f"{GITHUB_API_URL}/repos/{repo}/hooks", json=payload, headers=headers)
 
     if response.status_code == 201:
-        print(f"✅ Webhook successfully set up for {repo}")
+        print(f"Webhook successfully set up for {repo}")
     else:
-        print(f"❌ Failed to set up webhook for {repo}. Status code: {response.status_code}")
+        print(f"Failed to set up webhook for {repo}. Status code: {response.status_code}")
         try:
             print(response.json())
         except requests.exceptions.JSONDecodeError:
-            print("⚠️ Error: Could not decode response JSON.")
+            print("Error: Could not decode response JSON.")
 
 if __name__ == "__main__":
-    repo = "yourusername/yourrepo"  # Change this to your actual GitHub repo
+    repo = "yourusername/yourrepo"
     setup_webhook(repo)
